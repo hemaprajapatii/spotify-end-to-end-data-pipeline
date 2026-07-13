@@ -4,7 +4,7 @@ An end-to-end data engineering pipeline to extract, transform, and load (ETL) Sp
 
 ## 📌 Architecture Diagram
 
-![Project Architecture](Architecture1.png)
+![Project Architecture](architecture.png)
 
 ## 🛠️ Tech Stack & AWS Services
 * **Language:** Python
@@ -43,4 +43,4 @@ An end-to-end data engineering pipeline to extract, transform, and load (ETL) Sp
 * `spotify_transformation_load_function.py` -> AWS Lambda code for converting JSON to structured formats.
 * `Spotify Data Pipeline Project.ipynb` -> Jupyter Notebook used for local testing and prototyping.
 * `spotipy_layer.zip` -> Deployment layer containing library dependencies for AWS Lambda.
-* `architecture.png` -> High-level architecture diagram of the pipeline.# spotify-end-to-end-data-pipeline
+* `architecture.png` -> High-level architecture diagram of the pipeline.
