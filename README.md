@@ -4,7 +4,7 @@ An end-to-end data engineering pipeline to extract, transform, and load (ETL) Sp
 
 ## 📌 Architecture Diagram
 
-![Project Architecture](architecture.png)
+![Project Architecture](Architecture1.png)
 
 ## 🛠️ Tech Stack & AWS Services
 * **Language:** Python
