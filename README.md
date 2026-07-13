@@ -4,7 +4,7 @@ An end-to-end data engineering pipeline to extract, transform, and load (ETL) Sp
 
 ## 📌 Architecture Diagram
 
-![Project Architecture](Architecture1.png)
+![Project Architecture](architecture.png)
 
 ## 🛠️ Tech Stack & AWS Services
 * **Language:** Python
@@ -20,20 +20,20 @@ An end-to-end data engineering pipeline to extract, transform, and load (ETL) Sp
 
 ## ⚙️ Data Pipeline Flow (ETL)
 
-### 1. Extract (ડેટા કલેક્શન)
-* **Amazon CloudWatch** દરરોજ એક ટ્રિગર ફાયર કરે છે જે **AWS Lambda (Data Extraction)** ફંક્શનને રન કરે છે.
-* લેમ્બડા ફંક્શન Python સ્ક્રિપ્ટ દ્વારા **Spotify API** માંથી લેટેસ્ટ મ્યુઝિક ડેટા ખેંચે છે.
-* આ ખેંચેલો રો ડેટા (Raw JSON) **Amazon S3 (raw data bucket)** માં સેવ થાય છે.
+### 1. Extract (Data Collection)
+* **Amazon CloudWatch** fires a daily trigger that runs the **AWS Lambda (Data Extraction)** function.
+* The Lambda function fetches the latest music data from the **Spotify API** using a Python script.
+* This fetched raw data (Raw JSON) is saved in the **Amazon S3 (raw data bucket)**.
 
-### 2. Transform (ડેટા ક્લીનિંગ અને ફોર્મેટિંગ)
-* જેવો નવો ડેટા raw S3 બકેટમાં આવે છે, એટલે એક **S3 Event Trigger (SQS)** ફાયર થાય છે.
-* આ ટ્રિગર બીજા **AWS Lambda (Data Transformation)** ફંક્શનને ચાલુ કરે છે જે JSON ડેટાને મસ્ત અને ક્લીન સ્ટ્રક્ચર્ડ ફોર્મેટમાં કન્વર્ટ કરે છે.
-* ફાઇનલ ટ્રાન્સફોર્મ થયેલો ડેટા **Amazon S3 (transformed data bucket)** માં લોડ થાય છે.
+### 2. Transform (Data Cleaning & Formatting)
+* As soon as new data arrives in the raw S3 bucket, an **S3 Event Trigger (SQS)** is fired.
+* This trigger activates the second **AWS Lambda (Data Transformation)** function, which converts the complex JSON data into clean, structured formats.
+* The final transformed data is loaded into the **Amazon S3 (transformed data bucket)**.
 
-### 3. Load & Analyze (ડેટા લોડિંગ)
-* **AWS Glue Crawler** ટ્રાન્સફોર્મ થયેલા ડેટાની બકેટને સ્કેન કરીને તેનો સ્કીમા (Schema) આપોઆપ સમજી લે છે.
-* તે ડેટાને **AWS Glue Data Catalog** માં ટેબલ તરીકે સ્ટોર કરે છે.
-* છેલ્લે, **Amazon Athena** નો ઉપયોગ કરીને આ ડેટા પર સીધી જ SQL ક્વેરીઝ રન કરીને એનાલિટિક્સ કરી શકાય છે.
+### 3. Load & Analyze (Data Loading)
+* **AWS Glue Crawler** scans the transformed data bucket and automatically infers its schema.
+* It stores the data as tables inside the **AWS Glue Data Catalog**.
+* Finally, **Amazon Athena** is used to run SQL queries directly on this data for analytics.
 
 ---
 
